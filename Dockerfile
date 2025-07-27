@@ -1,5 +1,5 @@
-# Use official Node.js LTS image
-FROM node:18
+# Use the official Node.js 14 image as base
+FROM node:14
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -8,10 +8,10 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 
-# Bundle app source
+# Copy the rest of the app
 COPY . .
 
-# Expose port
+# Expose the port your app runs on
 EXPOSE 8080
 
 # Start the app
