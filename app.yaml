@@ -1,5 +1,2 @@
-runtime: nodejs
-env: flex
-
-entrypoint: npm start
-
+runtime: nodejs20
+env: standard
