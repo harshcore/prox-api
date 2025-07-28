@@ -9,9 +9,6 @@ env_variables:
 readiness_check:
   app_start_timeout_sec: 1800
 
-# Configure nginx
-nginx_conf_http_include: nginx-http.conf
-
 # Network settings
 network:
   session_affinity: true
