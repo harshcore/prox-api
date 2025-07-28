@@ -64,9 +64,9 @@ async function scrapSources(source) {
             getMeta("og:site_name") || src.from || domain || "Unknown Source",
           url: finalUrl,
           domain: domain,
-          headline:
-            getMeta("og:title") || $("title").text() || "No title found",
-          // summary: getMeta("og:description") || getMeta("description") || "No description available",
+          headline: getMeta("og:title") || $("title").text() || domain,
+          summary:
+            getMeta("og:description") || getMeta("description") || domain,
           // date: parsedDate,
         };
       } catch (err) {
@@ -153,6 +153,20 @@ function transformContent(proxy_data, chunk) {
     if (proxy_data.activityString.endsWith(":RESEARCH_END")) {
       parseActivity(proxy_data, proxy_data.activityString);
       proxy_data.activityString = "";
+    }
+  } else if (trimmedChunk.startsWith("MODEL_PARAMS_START:")) {
+    proxy_data.modealParamsString = trimmedChunk;
+    if (proxy_data.modealParamsString.endsWith(":MODEL_PARAMS_END")) {
+      // parseActivity(proxy_data, proxy_data.modealParamsString);
+      proxy_data.modealParamsString = "";
+    }
+  } else if (
+    proxy_data?.modealParamsString?.startsWith("MODEL_PARAMS_START:")
+  ) {
+    proxy_data.modealParamsString += trimmedChunk;
+    if (proxy_data.modealParamsString.endsWith(":MODEL_PARAMS_END")) {
+      // parseActivity(proxy_data, proxy_data.modealParamsString);
+      proxy_data.modealParamsString = "";
     }
   } else {
     proxy_data.cleanedText = chunk;
