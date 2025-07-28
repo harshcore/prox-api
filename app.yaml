@@ -3,6 +3,3 @@ env: flex
 
 entrypoint: npm start
 
-env_variables:
-  NODE_ENV: "production"
-  PORT: 8080
