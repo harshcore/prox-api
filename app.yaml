@@ -1,18 +1,2 @@
 runtime: nodejs
 env: flex
-
-# Disable buffering for SSE
-env_variables:
-  GAE_USE_SOCKETS_FOR_DYNAMIC_REQUESTS: 'true'
-
-# Increase timeout for long-lived connections
-readiness_check:
-  app_start_timeout_sec: 1800
-
-# Network settings
-network:
-  session_affinity: true
-
-# Manual scaling to avoid instance recycling
-manual_scaling:
-  instances: 1
