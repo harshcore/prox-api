@@ -1,7 +1,8 @@
 runtime: nodejs
 env: flex
 
-entrypoint: node server.js
+entrypoint: npm start
 
 env_variables:
   NODE_ENV: "production"
+  PORT: 8080
