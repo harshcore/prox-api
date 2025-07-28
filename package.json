@@ -20,7 +20,7 @@
     "uuid": "^7.0.0"
   },
   "engines": {
-    "node": "14.x"
+    "node": "20.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-hello-node"
