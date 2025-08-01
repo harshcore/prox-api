@@ -2,18 +2,20 @@
 FROM node:18-alpine
 
 # Set working directory
-WORKDIR /
+WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy package files separately to use cache efficiently
+COPY package.json .
+COPY package-lock.json .
 
 # Install dependencies
 RUN npm install
 
-# Copy source code
+# Copy the rest of the code
 COPY . .
 
+# Expose port
 EXPOSE 8080
 
-# Start the app
+# Run the server
 CMD ["node", "server.js"]
