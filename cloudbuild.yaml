@@ -2,6 +2,11 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
+  # Step 0: Install dependencies
+  - name: 'node:18-alpine'
+    entrypoint: npm
+    args: ["install"]
+
   # Step 1: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: [
@@ -17,8 +22,5 @@ steps:
       'asia-south1-docker.pkg.dev/prox-api-467715/prox-api/prox-api:$COMMIT_SHA'
     ]
 
-  # (Optional) Deploy to Cloud Run or GKE - can be added later
-
 images:
   - 'asia-south1-docker.pkg.dev/prox-api-467715/prox-api/prox-api:$COMMIT_SHA'
-  
