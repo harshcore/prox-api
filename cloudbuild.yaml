@@ -3,7 +3,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'build',
-      '-t', 'REGION-docker.pkg.dev/prox-api-467715/prox-api/IMAGE-NAME:$COMMIT_SHA',
+      '-t', 'REGION-docker.pkg.dev/prox-api-467715/prox-api/prox-api:$COMMIT_SHA',
       '.'
     ]
 
@@ -11,11 +11,11 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'push',
-      'REGION-docker.pkg.dev/prox-api-467715/prox-api/IMAGE-NAME:$COMMIT_SHA'
+      'REGION-docker.pkg.dev/prox-api-467715/prox-api/prox-api:$COMMIT_SHA'
     ]
 
   # (Optional) Deploy to Cloud Run or GKE - can be added later
 
 images:
-  - 'REGION-docker.pkg.dev/prox-api-467715/prox-api/IMAGE-NAME:$COMMIT_SHA'
+  - 'REGION-docker.pkg.dev/prox-api-467715/prox-api/prox-api:$COMMIT_SHA'
   
