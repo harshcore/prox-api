@@ -6,7 +6,8 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY . ./
  # INSTALL NPM
-RUN npm install && \
-  npm -v && \
-  npm install -g
+RUN npm install 
+  # && \
+  # npm -v && \
+  # npm install -g
 CMD ["npm", "start"]
