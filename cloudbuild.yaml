@@ -31,11 +31,6 @@ steps:
   - '${_SERVICE_ACCOUNT}'
   - '--max-instances'
   - '5'
-  - '--timeout'
-  - '60'
-  - '--set-secrets'
-  - 'SECRET_KEY=${_SECRET_ID}:latest' 
-  allow_failure: true
 
 
 images:
@@ -48,4 +43,3 @@ substitutions:
   _REGION: asia-south1
   _PROJ_ID: prox-api-1842
   _SERVICE_ACCOUNT: 748942250889-compute@developer.gserviceaccount.com
-  _SECRET_ID: prox-api-1842
