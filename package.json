@@ -14,18 +14,22 @@
     "cheerio": "^1.1.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
+    "express": "^4.21.2",
     "fastify": "^4.21.0",
     "handlebars": "^4.7.8",
     "uuid": "^7.0.0"
   },
   "engines": {
-    "node": "20.x"
+    "node": "14.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-hello-node"
   },
   "license": "MIT",
-  "keywords": ["node", "glitch"],
+  "keywords": [
+    "node",
+    "glitch"
+  ],
   "devDependencies": {
     "javascript-obfuscator": "^4.1.1"
   }
