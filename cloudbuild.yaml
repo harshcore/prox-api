@@ -1,26 +1,48 @@
-options:
-  logging: CLOUD_LOGGING_ONLY
-
 steps:
-  # Step 0: Install dependencies
-  - name: 'node:18-alpine'
-    entrypoint: npm
-    args: ["install"]
 
-  # Step 1: Build Docker image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'build',
-      '-t', 'asia-south1-docker.pkg.dev/prox-api-467715/prox-api/prox-api:$COMMIT_SHA',
-      '.'
-    ]
+- id: Docker build
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '${_REPO_REGION}/${_PROJ_ID}/${_REPO_NAME}/${_SERVICE_NAME}', '.']
+  
+- id: Container image push
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['push', '${_REPO_REGION}/${_PROJ_ID}/${_REPO_NAME}/${_SERVICE_NAME}']
 
-  # Step 2: Push Docker image to Artifact Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'push',
-      'asia-south1-docker.pkg.dev/prox-api-467715/prox-api/prox-api:$COMMIT_SHA'
-    ]
+- id: Cloud run deploy
+  name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - '${_SERVICE_NAME}'
+  - '--image'
+  - '${_REPO_REGION}/${_PROJ_ID}/${_REPO_NAME}/${_SERVICE_NAME}'
+  - '--port'
+  - '3001'
+  - '--memory=1Gi'
+  - '--region'
+  - '${_REGION}'
+  - '--platform'
+  - 'managed'
+  - '--allow-unauthenticated'
+  - '--service-account'
+  - '${_SERVICE_ACCOUNT}'
+  - '--max-instances'
+  - '5'
+  - '--timeout'
+  - '60'
+  - '--set-secrets'
+  - 'SECRET_KEY=${_SECRET_ID}:latest' 
+  allow_failure: true
+
 
 images:
-  - 'asia-south1-docker.pkg.dev/prox-api-467715/prox-api/prox-api:$COMMIT_SHA'
+- ${_REPO_REGION}/${_PROJ_ID}/${_REPO_NAME}/${_SERVICE_NAME}
+
+substitutions:
+  _REPO_REGION: asia-south1-docker.pkg.dev
+  _REPO_NAME: prox-api
+  _SERVICE_NAME: prox-api
+  _REGION: asia-south1
+  _PROJ_ID: prox-api-467715
+  _SERVICE_ACCOUNT: harsh.narwariya@bemasterly.com
+  _SECRET_ID: prox-api-467715
