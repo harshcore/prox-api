@@ -47,5 +47,5 @@ substitutions:
   _SERVICE_NAME: prox-api-1842
   _REGION: asia-south1
   _PROJ_ID: prox-api-1842
-  _SERVICE_ACCOUNT: 619201636802-compute@developer.gserviceaccount.com
+  _SERVICE_ACCOUNT: harsh.narwariya@bemasterly.com
   _SECRET_ID: prox-api-1842
