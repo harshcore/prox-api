@@ -43,9 +43,9 @@ images:
 
 substitutions:
   _REPO_REGION: asia-south1-docker.pkg.dev
-  _REPO_NAME: prox-api
-  _SERVICE_NAME: prox-api
+  _REPO_NAME: prox-api-1842
+  _SERVICE_NAME: prox-api-1842
   _REGION: asia-south1
-  _PROJ_ID: prox-api-467715
+  _PROJ_ID: prox-api-1842
   _SERVICE_ACCOUNT: 619201636802-compute@developer.gserviceaccount.com
-  _SECRET_ID: prox-api-467715
+  _SECRET_ID: prox-api-1842
