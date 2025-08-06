@@ -1,3 +1,4 @@
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -21,6 +22,7 @@ const STG_GENERATE_API = "https://photon-api.thesynapses.com/generate";
 const DEV_GENERATE_API = "https://pa-dev-api.thesynapses.com/spark/generate";
 const DEV_SUMMERISE_TITLE_API =
   "https://pa-dev-api.thesynapses.com/spark/summarise_title";
+const ORG = "synapse";
 
 // Middleware to add request ID to every request
 app.use((req, res, next) => {
@@ -75,7 +77,7 @@ async function useGenerateFrom(req) {
         ...restBody,
         type: "global",
         file_url: [],
-        org_id: "synapses",
+        org_id: ORG,
         uid: "xePSzT4DmZQ8G9UkUyeGtF5GEyP2",
         regenerate: false,
         style: styleToUse,
@@ -105,7 +107,7 @@ async function useGenerateFrom(req) {
 
         type: "global",
         file_url: [],
-        org_id: "synapses",
+        org_id: ORG,
         uid: "uiFZuraB8bSmIBMpUH8rg8bQguB3",
         regenerate: false,
         style: styleToUse,
@@ -239,7 +241,7 @@ app.post("/summarise_title", async (req, res) => {
       {
         prompt: prompt,
         prompt_id: "556b448c-17b5-4259-be54-b1955e180a53",
-        org_id: "synapses",
+        org_id: ORG,
         chat_id: "330faa6c-f844-4e92-b29c-b72dfcc27cfa",
         user_id: "TSgg30aONkh9v5vAQwfIARODGkj1",
       },
@@ -443,6 +445,6 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`[Server] Running on http://0.0.0.0:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`[Server] Running on http://localhost:${PORT}`);
 });
