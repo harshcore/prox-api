@@ -141,7 +141,9 @@ function transformContent(proxy_data, chunk) {
   proxy_data.cleanedText = "";
   proxy_data.steps = [];
 
-  const trimmedChunk = chunk?.trim();
+  const safeChunk = chunk.replace(/PhotonAI/g, "Noney");
+  const trimmedChunk = safeChunk.trim();
+
   if (trimmedChunk.startsWith("RESEARCH_START:")) {
     proxy_data.activityString = trimmedChunk;
     if (proxy_data.activityString.endsWith(":RESEARCH_END")) {
@@ -169,7 +171,7 @@ function transformContent(proxy_data, chunk) {
       proxy_data.modealParamsString = "";
     }
   } else {
-    proxy_data.cleanedText = chunk;
+    proxy_data.cleanedText = safeChunk;
   }
   return proxy_data;
 }
