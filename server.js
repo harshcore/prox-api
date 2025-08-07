@@ -1,10 +1,9 @@
-
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { default: axios } = require("axios");
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = 8000;
 const { v4: uuidv4 } = require("uuid");
 
 const dummyData = require("./dummy_data.json");
@@ -21,7 +20,7 @@ const PROD_GENERATE_API = "https://photon-api.thesynapses.com/generate";
 const STG_GENERATE_API = "https://photon-api.thesynapses.com/generate";
 const DEV_GENERATE_API = "https://pa-dev-api.thesynapses.com/spark/generate";
 const DEV_SUMMERISE_TITLE_API =
-  "https://pa-dev-api.thesynapses.com/spark/summarise_title";
+  "https://pa-dev-api.thesynapses.com/spark/generate_chat_title";
 const ORG = "synapse";
 
 // Middleware to add request ID to every request
@@ -252,7 +251,9 @@ app.post("/summarise_title", async (req, res) => {
       }
     );
     console.log(`[Success][${requestId}] Title summarized`);
-    res.json(response.data);
+    res.json({
+      summarized_title: response.data?.generated_title || "",
+    });
   } catch (error) {
     console.log(
       `[Error][${requestId}] Failed to summarize title: ${error.message}`
