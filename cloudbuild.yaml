@@ -31,6 +31,7 @@ steps:
   - '${_SERVICE_ACCOUNT}'
   - '--max-instances'
   - '5'
+  - '--timeout=900s'
 
 
 images:
