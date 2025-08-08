@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const { default: axios } = require("axios");
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8080;
 const { v4: uuidv4 } = require("uuid");
 
 const dummyData = require("./dummy_data.json");
@@ -449,3 +449,4 @@ app.get("/health", (req, res) => {
 app.listen(PORT, () => {
   console.log(`[Server] Running on http://localhost:${PORT}`);
 });
+
